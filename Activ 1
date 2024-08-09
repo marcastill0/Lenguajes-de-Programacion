@@ -1,0 +1,21 @@
+ACTV 1 LENGUAJES DE PROGRAMACION
+
+*******************************************************************************/
+#include <iostream>
+#include <stdio.h>
+
+int main() {
+    
+    int edad;
+    std::cout << "Ingrese su edad: ";
+    std::cin >> edad;
+    
+    if (edad >= 18) {
+        std::cout << "Usted es mayor de edad: ";
+        
+    }else {
+        std::cout << "Usted es menor de edad: ";
+    }
+
+    return 0;
+}
