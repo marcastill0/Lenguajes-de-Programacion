@@ -1,0 +1,84 @@
+#include <iostream>
+#include <string>
+#include <cctype>
+
+
+std::string obtener1vocalinterna(const std::string apellidpoPat){
+    std::string vocal1 ="X";
+for (size_t i = 1; i < apellidpoPat.length(); ++i) {
+        if (std::string("AEIOUaeiou").find(apellidpoPat[i])) {
+            vocal1 = (1, toupper(apellidpoPat[i]));
+            return vocal1;
+        }
+    }
+    return "X";
+}
+
+
+int main()
+{
+    std::cout<<"Marlene\n";
+    
+    std::string primerNombre = "";
+    std::string segundoNombre = "";
+    std::string apellidpoPat = "";
+    std::string apellidoMat = "";
+    int anio = 0;
+    int mes = 0;
+    int dia = 0;
+    
+    
+    std::cout << "Calculemos tu RFC\n Escribe tu primer nombre: ";
+    std::cin >> primerNombre;
+    
+    std::cout << "Escribe tu segundo nombre: ";
+    std::cin >> segundoNombre;
+    
+    std::cout << "Escribe tu apellido paterno: ";
+    std::cin >> apellidpoPat;
+    
+    std::cout << "Escribe tu apellido materno: ";
+    std::cin >> apellidoMat;
+    
+    std::cout << "Coloca tu fecha de nacimiento (Solo numeros) \nDía: ";
+    std::cin >> dia;
+    
+    std::cout << "Mes: ";
+    std::cin >> mes;
+    
+    std::cout  << "Año (4 digitos): ";
+    std::cin >> anio;
+    
+    
+    std::string rfc;
+
+    // Primer letra del primer apellido
+    rfc += toupper(apellidpoPat[0]);
+
+    // Primera vocal interna del primer apellido
+    std::string vocal1 = obtener1vocalinterna(apellidpoPat);
+    
+    
+    
+    rfc += vocal1;
+
+    // Primer letra del segundo apellido
+    rfc += toupper(apellidoMat[0]);
+
+    // Primer letra del primer nombre
+    rfc += toupper(primerNombre[0]);
+
+    // Fecha de nacimiento en formato YYMMDD
+    if (anio >= 2000) anio -= 2000;
+    else anio -= 1900;
+
+    rfc += (anio < 10 ? "0" : "") + std::to_string(anio);
+    rfc += (mes < 10 ? "0" : "") + std::to_string(mes);
+    rfc += (dia < 10 ? "0" : "") + std::to_string(dia);
+
+    
+    std::cout<< "Tu RFC sin homoclabe es: " << rfc;
+    
+    
+    return 0;
+}
